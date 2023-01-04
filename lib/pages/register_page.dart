@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 
+import '../configs/env/imgs_path.dart';
+import '../configs/routes/app_routes.dart';
 import '../configs/styles/app_colors.dart';
 import '../configs/styles/app_texts.dart';
 import '../widgets/shared/submit_button.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  var isShow = false;
-  final facebookImg = 'assets/icons/facebook.png';
-  final googleImg = 'assets/icons/google.png';
-  final appleImg = 'assets/icons/apple.png';
+class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _userController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(20, 11, 20, 0),
+          padding: const EdgeInsets.fromLTRB(20, 11, 20, 0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,39 +56,27 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 33,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Welcome back! Flash',
-                    style: ralewayBold(
-                      tSize: 30,
-                      tColor: Colors.black,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'card',
-                        style: ralewayBold(
-                          tSize: 30,
-                          tColor: AppColors.mediumPurple,
-                        ),
-                      ),
-                      const TextSpan(
-                        text: '\nto see you, Again!',
-                      ),
-                    ],
+                Text(
+                  'Hello! Register to get started',
+                  style: urbanistBold(
+                    tSize: 30,
+                    tColor: AppColors.dark,
                   ),
                 ),
-                const SizedBox(height: 53),
+                const SizedBox(
+                  height: 95,
+                ),
+                // Username
                 TextField(
-                  style: ralewayMedium(
+                  controller: _userController,
+                  style: urbanistMedium(
                     tSize: 18,
                     tColor: Colors.black,
                   ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Enter your email',
-                    fillColor: AppColors.azure,
-                    filled: true,
-                    hintStyle: ralewayMedium(
+                    hintText: 'Username',
+                    hintStyle: urbanistMedium(
                       tSize: 15,
                       tColor: AppColors.darkGray,
                     ),
@@ -104,35 +95,19 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 18,
+                  height: 15,
                 ),
+                // Email
                 TextField(
-                  obscureText: !isShow,
-                  obscuringCharacter: '●',
-                  style: ralewayMedium(
+                  controller: _emailController,
+                  style: urbanistMedium(
                     tSize: 18,
                     tColor: Colors.black,
                   ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Enter your password',
-                    fillColor: AppColors.azure,
-                    filled: true,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isShow = !isShow;
-                        });
-                      },
-                      icon: Icon(
-                        isShow
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        size: 25,
-                        color: AppColors.dark,
-                      ),
-                    ),
-                    hintStyle: ralewayMedium(
+                    hintText: 'Email',
+                    hintStyle: urbanistMedium(
                       tSize: 15,
                       tColor: AppColors.darkGray,
                     ),
@@ -150,21 +125,85 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 18, 0, 35),
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forgot Password?",
-                    style: urbanistSemiBold(
-                      tSize: 14,
-                      tColor: AppColors.darkBlue,
+                const SizedBox(
+                  height: 15,
+                ),
+                // Password
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  obscuringCharacter: '●',
+                  style: urbanistMedium(
+                    tSize: 18,
+                    tColor: Colors.black,
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Password',
+                    hintStyle: urbanistMedium(
+                      tSize: 15,
+                      tColor: AppColors.darkGray,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: AppColors.darkGray.withOpacity(0.5),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: AppColors.lightGray,
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
+                // Confirm password
+                TextField(
+                  controller: _confirmPasswordController,
+                  obscureText: true,
+                  obscuringCharacter: '●',
+                  style: urbanistMedium(
+                    tSize: 18,
+                    tColor: Colors.black,
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Confirm Password',
+                    hintStyle: urbanistMedium(
+                      tSize: 15,
+                      tColor: AppColors.darkGray,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: AppColors.darkGray.withOpacity(0.5),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: AppColors.lightGray,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
                 SubmitButton(
-                  text: 'Login',
-                  event: () {},
-                  textStyle: ralewayMedium(tSize: 17, tColor: Colors.white),
+                  text: 'Register',
+                  event: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(AppRoutes.register_success);
+                  },
+                  textStyle: urbanistSemiBold(
+                    tSize: 15,
+                    tColor: Colors.white,
+                  ),
                 ),
                 const SizedBox(
                   height: 41,
@@ -203,41 +242,41 @@ class _LoginPageState extends State<LoginPage> {
                       flex: 1,
                       child: OutlinedButton(
                         onPressed: () {},
-                        child: Image.asset(
-                          facebookImg,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          minimumSize: Size.fromHeight(65),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: Image.asset(
-                          googleImg,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          minimumSize: Size.fromHeight(65),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: Image.asset(
-                          appleImg,
-                        ),
                         style: OutlinedButton.styleFrom(
                           minimumSize: const Size.fromHeight(65),
+                        ),
+                        child: Image.asset(
+                          ImgsPath.facebookSticker,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(65),
+                        ),
+                        child: Image.asset(
+                          ImgsPath.googleSticker,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(65),
+                        ),
+                        child: Image.asset(
+                          ImgsPath.appleSticker,
                         ),
                       ),
                     ),

@@ -29,6 +29,13 @@
             {
               "client_id": "691680597057-vmd2nn9bokrqntlt8eqqg9d2bp65u4b9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "691680597057-hoduehngpai19u00aq5n1rsdtmu535ij.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flashwords"
+              }
             }
           ]
         }

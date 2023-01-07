@@ -21,6 +21,15 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController();
 
   @override
+  void dispose() {
+    _userController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -30,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
@@ -54,17 +63,27 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 33,
+                  height: 30,
                 ),
                 Text(
                   'Hello! Register to get started',
                   style: urbanistBold(
-                    tSize: 30,
+                    tSize: 29,
                     tColor: AppColors.dark,
                   ),
                 ),
-                const SizedBox(
+                // const SizedBox(
+                //   height: 95,
+                // ),
+                SizedBox(
                   height: 95,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      'assets/icons/welcome.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 // Username
                 TextField(

@@ -1,33 +1,48 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/firebase_auth_bloc/firebase_auth_bloc.dart';
+import 'blocs/auth_bloc/auth_bloc.dart';
 import 'configs/routes/app_routes.dart';
 import 'configs/styles/app_colors.dart';
-import 'services/firebase_auth_service.dart';
+import 'firebase_options.dart';
+import 'services/auth_service.dart';
 
 Future<void> main() async {
-  // runApp(MyApp());
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => MultiBlocProvider(
-        providers: [
-          BlocProvider<FirebaseAuthBloc>(
-            create: (context) => FirebaseAuthBloc(
-              firebaseAuthService: FirebaseAuthService(),
-            ),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(
+            authService: AuthService(),
           ),
-        ],
-        child: MyApp(),
-      ),
+        ),
+      ],
+      child: const MyApp(),
     ),
   );
+
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) => MultiBlocProvider(
+  //       providers: [
+  //         BlocProvider<FirebaseAuthBloc>(
+  //           create: (context) => FirebaseAuthBloc(
+  //             firebaseAuthService: FirebaseAuthService(),
+  //           ),
+  //         ),
+  //       ],
+  //       child: MyApp(),
+  //     ),
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {

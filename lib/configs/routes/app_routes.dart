@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../pages/home_page.dart';
-import '../../pages/initial_page.dart';
-import '../../pages/login_page.dart';
-import '../../pages/register_page.dart';
-import '../../pages/register_success_page.dart';
+import '../../features/auth/presentation/pages/home_page.dart';
+import '../../features/auth/presentation/pages/initial_page.dart';
+import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/register_page.dart';
+import '../../features/auth/presentation/pages/register_success_page.dart';
 
 class AppRoutes {
   static String initial = '/initial';

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "691680597057",
+    "project_id": "flashwords-75197",
+    "storage_bucket": "flashwords-75197.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691680597057:android:15a7de6cae978ff71ea2c0",
+        "android_client_info": {
+          "package_name": "com.example.flashwords"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691680597057-vmd2nn9bokrqntlt8eqqg9d2bp65u4b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "YOUR API KEY'S HERE!"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691680597057-vmd2nn9bokrqntlt8eqqg9d2bp65u4b9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "691680597057-hoduehngpai19u00aq5n1rsdtmu535ij.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flashwords"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

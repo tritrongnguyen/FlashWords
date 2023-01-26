@@ -3,25 +3,24 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/auth_bloc/auth_bloc.dart';
 import 'configs/routes/app_routes.dart';
 import 'configs/styles/app_colors.dart';
+import 'features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'firebase_options.dart';
-import 'services/auth_service.dart';
+import 'service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await setUp();
 
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(
-            authService: AuthService(),
-          ),
+          create: (context) => sl<AuthBloc>(),
         ),
       ],
       child: const MyApp(),

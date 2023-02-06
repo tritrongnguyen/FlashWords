@@ -31,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         User? user = await signInWithEmailAndPasswordUseCase.call(
             email: event.email, password: event.password);
         if (user != null) {
-          emit(Authenticated(user));
+          emit(Authenticated(uid: user.uid));
         }
       } catch (e) {
         emit(AuthFailed(e.toString()));
@@ -51,7 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         User? user = await signInWithGoogleUseCase.call();
         if (user != null) {
-          emit(Authenticated(user));
+          emit(Authenticated(uid: user.uid));
         }
       } catch (e) {
         emit(AuthFailed(e.toString()));
@@ -63,14 +63,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoading());
 
       try {
-        if (event.password == event.confirmPassword) {
+        if (event.password.trim() == event.confirmPassword.trim()) {
           User? user = await signUpWithEmailAndPasswordUseCase.call(
             userName: event.userName,
             email: event.email,
             password: event.password,
           );
           if (user != null) {
-            emit(Authenticated(user));
+            emit(Authenticated(uid: user.uid));
             emit(UnAuthenticated());
           }
         } else {

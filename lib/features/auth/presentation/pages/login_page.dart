@@ -4,9 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../configs/routes/app_routes.dart';
 import '../../../../configs/styles/app_colors.dart';
 import '../../../../configs/styles/app_texts.dart';
-import '../../../../widgets/shared/submit_button.dart';
+import '../../../../shared/widgets/submit_button.dart';
 import '../bloc/auth/auth_bloc.dart';
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -50,8 +49,9 @@ class _LoginPageState extends State<LoginPage> {
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is Authenticated) {
-              Navigator.of(context).pushReplacementNamed(AppRoutes.home,
-                  arguments: HomePageArguments(user: state.user));
+              Navigator.of(context).pushReplacementNamed(
+                AppRoutes.all_topics,
+              );
             }
             if (state is AuthFailed) {
               ScaffoldMessenger.of(context)

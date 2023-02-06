@@ -5,7 +5,7 @@ import '../../../../configs/env/imgs_path.dart';
 import '../../../../configs/routes/app_routes.dart';
 import '../../../../configs/styles/app_colors.dart';
 import '../../../../configs/styles/app_texts.dart';
-import '../../../../widgets/shared/submit_button.dart';
+import '../../../../shared/widgets/submit_button.dart';
 import '../bloc/auth/auth_bloc.dart';
 
 class RegisterPage extends StatefulWidget {

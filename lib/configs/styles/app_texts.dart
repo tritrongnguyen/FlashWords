@@ -20,6 +20,16 @@ TextStyle ralewayMedium({required double tSize, required Color tColor}) {
   );
 }
 
+TextStyle ralewaySemibold({required double tSize, required Color tColor}) {
+  return TextStyle(
+    fontFamily: 'Raleway',
+    fontWeight: FontWeight.w600,
+    fontSize: tSize,
+    color: tColor,
+    height: 1.3,
+  );
+}
+
 TextStyle urbanistSemiBold({required double tSize, required Color tColor}) {
   return TextStyle(
     fontFamily: 'Urbanist',

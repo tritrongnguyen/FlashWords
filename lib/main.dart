@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'configs/routes/app_routes.dart';
 import 'configs/styles/app_colors.dart';
 import 'features/auth/presentation/bloc/auth/auth_bloc.dart';
+import 'features/user_management/presentation/bloc/user_management_bloc.dart';
 import 'firebase_options.dart';
 import 'service_locator.dart';
 
@@ -22,26 +22,13 @@ Future<void> main() async {
         BlocProvider<AuthBloc>(
           create: (context) => sl<AuthBloc>(),
         ),
+        BlocProvider<UserManagementBloc>(
+          create: (context) => sl<UserManagementBloc>(),
+        ),
       ],
       child: const MyApp(),
     ),
   );
-
-  // runApp(
-  //   DevicePreview(
-  //     enabled: !kReleaseMode,
-  //     builder: (context) => MultiBlocProvider(
-  //       providers: [
-  //         BlocProvider<FirebaseAuthBloc>(
-  //           create: (context) => FirebaseAuthBloc(
-  //             firebaseAuthService: FirebaseAuthService(),
-  //           ),
-  //         ),
-  //       ],
-  //       child: MyApp(),
-  //     ),
-  //   ),
-  // );
 }
 
 class MyApp extends StatelessWidget {
@@ -52,8 +39,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

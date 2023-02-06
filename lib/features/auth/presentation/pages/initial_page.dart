@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../configs/routes/app_routes.dart';
 import '../../../../configs/styles/app_texts.dart';
-import '../../../../widgets/shared/submit_button.dart';
+import '../../../../shared/widgets/submit_button.dart';
 
 class InitialPage extends StatelessWidget {
   const InitialPage({Key? key}) : super(key: key);

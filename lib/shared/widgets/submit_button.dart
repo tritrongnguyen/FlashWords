@@ -17,16 +17,16 @@ class SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: event,
-      child: Text(
-        text,
-        style: textStyle,
-      ),
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.mediumPurple,
         minimumSize: Size.fromHeight(65),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
+      ),
+      child: Text(
+        text,
+        style: textStyle,
       ),
     );
   }

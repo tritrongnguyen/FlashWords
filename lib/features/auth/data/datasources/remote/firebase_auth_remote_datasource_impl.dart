@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../domain/entities/firebase_user.dart';
-import '../../models/firebase_user_model.dart';
+import '../../../../user_management/data/datasources/remote/user_remote_datasource.dart';
+import '../../../../user_management/data/models/firebase_user_model.dart';
+import '../../../../user_management/domain/entities/firebase_user.dart';
 import 'firebase_auth_remote_datasource.dart';
-import 'user_remote_datasource.dart';
 
 class FirebaseAuthRemoteDataSourceImpl implements FirebaseAuthRemoteDataSource {
   final FirebaseAuth firebaseAuth;

@@ -10,8 +10,14 @@ import 'features/auth/domain/repositories/firebase_auth_repository.dart';
 import 'features/auth/domain/usecases/auth_usecases/sign_in_with_email_and_password_usecase.dart';
 import 'features/auth/domain/usecases/auth_usecases/sign_in_with_google_usecase.dart';
 import 'features/auth/domain/usecases/auth_usecases/sign_out_usecase.dart';
-import 'features/auth/domain/usecases/auth_usecases/sign_up_with_email_and_password.dart';
+import 'features/auth/domain/usecases/auth_usecases/sign_up_with_email_and_password_usecase.dart';
 import 'features/auth/presentation/bloc/auth/auth_bloc.dart';
+import 'features/topics_management/data/datasources/remote_datasources/topics_datasources.dart';
+import 'features/topics_management/data/datasources/remote_datasources/topics_datasources_impl.dart';
+import 'features/topics_management/data/repositories/topic_repository_impl.dart';
+import 'features/topics_management/domain/repositories/topic_repository.dart';
+import 'features/topics_management/domain/usecases/get_all_topics_usecase.dart';
+import 'features/topics_management/presentation/bloc/topics_management_bloc.dart';
 import 'features/user_management/data/datasources/remote/user_remote_datasource.dart';
 import 'features/user_management/data/datasources/remote/user_remote_datasource_impl.dart';
 import 'features/user_management/data/repositories/user_repository_impl.dart';
@@ -35,6 +41,12 @@ Future<void> setUp() async {
   sl.registerFactory<UserManagementBloc>(
     () => UserManagementBloc(
       getSingleUserByUidUseCase: sl.call(),
+    ),
+  );
+
+  sl.registerFactory<TopicsManagementBloc>(
+    () => TopicsManagementBloc(
+      getAllTopicsOfUserUseCase: sl.call(),
     ),
   );
 
@@ -64,9 +76,15 @@ Future<void> setUp() async {
     ),
   );
 
-  sl.registerLazySingleton(
+  sl.registerLazySingleton<GetSingleUserByUidUseCase>(
     () => GetSingleUserByUidUseCase(
       userRepository: sl.call(),
+    ),
+  );
+
+  sl.registerLazySingleton<GetAllTopicsOfUserUseCase>(
+    () => GetAllTopicsOfUserUseCase(
+      topicRepository: sl.call(),
     ),
   );
 
@@ -83,6 +101,12 @@ Future<void> setUp() async {
     ),
   );
 
+  sl.registerLazySingleton<TopicRepository>(
+    () => TopicRepositoryImpl(
+      topicRemoteDataSources: sl.call(),
+    ),
+  );
+
   // Register Data sources
   sl.registerLazySingleton<FirebaseAuthRemoteDataSource>(
     () => FirebaseAuthRemoteDataSourceImpl(
@@ -94,6 +118,12 @@ Future<void> setUp() async {
 
   sl.registerLazySingleton<UserRemoteDataSource>(
     () => UserRemoteDataSourceImpl(
+      firebaseFirestore: sl.call(),
+    ),
+  );
+
+  sl.registerLazySingleton<TopicRemoteDataSources>(
+    () => TopicRemoteDataSourcesImpl(
       firebaseFirestore: sl.call(),
     ),
   );

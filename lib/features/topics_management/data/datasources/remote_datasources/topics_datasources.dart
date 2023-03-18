@@ -1,8 +1,6 @@
-import 'package:equatable/equatable.dart';
+import '../../../domain/entities/topic.dart';
 
-import '../entities/topic.dart';
-
-abstract class TopicRepository extends Equatable {
+abstract class TopicRemoteDataSources {
   Future<Topic> getSingleTopicById({required String id});
 
   Future<List<Topic>> getAllTopicsOfUser({required String uid});

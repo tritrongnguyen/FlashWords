@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../domain/usecases/auth_usecases/sign_in_with_email_and_password_usecase.dart';
 import '../../../domain/usecases/auth_usecases/sign_in_with_google_usecase.dart';
 import '../../../domain/usecases/auth_usecases/sign_out_usecase.dart';
-import '../../../domain/usecases/auth_usecases/sign_up_with_email_and_password.dart';
+import '../../../domain/usecases/auth_usecases/sign_up_with_email_and_password_usecase.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

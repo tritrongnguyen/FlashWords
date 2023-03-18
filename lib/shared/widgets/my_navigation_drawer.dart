@@ -7,16 +7,16 @@ import '../../configs/styles/app_texts.dart';
 import '../../features/auth/presentation/bloc/auth/auth_bloc.dart';
 import '../../features/user_management/domain/entities/firebase_user.dart';
 
-class NavigationDrawer extends StatefulWidget {
+class MyNavigationDrawer extends StatefulWidget {
   final FirebaseUser? firebaseUser;
 
-  const NavigationDrawer({super.key, required this.firebaseUser});
+  const MyNavigationDrawer({super.key, required this.firebaseUser});
 
   @override
-  State<NavigationDrawer> createState() => _NavigationDrawerState();
+  State<MyNavigationDrawer> createState() => _NavigationDrawerState();
 }
 
-class _NavigationDrawerState extends State<NavigationDrawer> {
+class _NavigationDrawerState extends State<MyNavigationDrawer> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,7 +79,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushReplacementNamed(
-                    AppRoutes.all_topics,
+                    AppRoutes.allTopics,
                   );
                 },
               ),
@@ -102,7 +102,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context)
-                      .pushReplacementNamed(AppRoutes.all_cards);
+                      .pushReplacementNamed(AppRoutes.allCards);
                 },
               ),
               ListTile(

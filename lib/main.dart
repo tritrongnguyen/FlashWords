@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'configs/routes/app_routes.dart';
 import 'configs/styles/app_colors.dart';
 import 'features/auth/presentation/bloc/auth/auth_bloc.dart';
+import 'features/topics_management/presentation/bloc/topics_management_bloc.dart';
 import 'features/user_management/presentation/bloc/user_management_bloc.dart';
 import 'firebase_options.dart';
 import 'service_locator.dart';
@@ -24,6 +25,9 @@ Future<void> main() async {
         ),
         BlocProvider<UserManagementBloc>(
           create: (context) => sl<UserManagementBloc>(),
+        ),
+        BlocProvider<TopicsManagementBloc>(
+          create: (context) => sl<TopicsManagementBloc>(),
         ),
       ],
       child: const MyApp(),

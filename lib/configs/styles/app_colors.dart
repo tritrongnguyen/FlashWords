@@ -5,6 +5,8 @@ class AppColors {
 
   static Color mediumPurple = const Color(0xFF6A74CF);
 
+  static Color hotPink = const Color(0xFFFF80CC);
+
   static Color azure = const Color(0xFFF7F8F9);
   static Color darkBlue = const Color(0xFF001745);
 

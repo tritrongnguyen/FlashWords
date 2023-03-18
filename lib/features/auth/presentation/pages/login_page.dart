@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
           listener: (context, state) {
             if (state is Authenticated) {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.all_topics,
+                AppRoutes.allTopics,
               );
             }
             if (state is AuthFailed) {

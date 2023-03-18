@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
             }
             if (state is Authenticated) {
               Navigator.of(context)
-                  .pushReplacementNamed(AppRoutes.register_success);
+                  .pushReplacementNamed(AppRoutes.registerSuccess);
             }
           },
           builder: (context, state) {
